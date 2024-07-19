@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class PublishedManager(models.Manager):
@@ -29,7 +30,8 @@ class Post(models.Model):
     # поле заголовка поста
     title = models.CharField(max_length=250)
     # поле для формирования красивых и дружественных для поисковой оптимизации URL-адресов постов блога
-    slug = models.SlugField(max_length=250, unique=True)
+    slug = models.SlugField(max_length=250,
+                            unique_for_date='publish')
     # поле автора - связано с моделью данных User - связь один ко многим
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE,
@@ -68,3 +70,16 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        """
+        Метод для формирования кананонического адреса динамически. Функция reverse()
+        будет формировать URL-адрес динамически, применяя имя URL-адреса, определенное
+        в шаблонах URL-адресов
+        :return:
+        """
+        return reverse('blog:post_detail',
+                       args=[self.publish.year,
+                             self.publish.month,
+                             self.publish.day,
+                             self.slug])

@@ -15,7 +15,7 @@ def post_list(request):
                   {'posts': posts})
 
 
-def post_detail(request, id):
+def post_detail(request, year, month, day, post):
     """
     Представление для отображения одиночного поста по его id.
     :param request: запрос с фронта для обработки
@@ -25,7 +25,11 @@ def post_detail(request, id):
     # функция сокращенного доступа для вызова метода get() в заданном модельном менеджере
     # и вызова исключения Http404 вместо исключения DoesNotExist, когда объект не найден
     post = get_object_or_404(Post,
-                             id=id, status=Post.Status.PUBLISHED)
+                             status=Post.Status.PUBLISHED,
+                             slug=post,
+                             publish__year=year,
+                             publish__month=month,
+                             publish__day=day)
     return render(request,
                   'blog/post/detail.html',
                   {'post': post})
