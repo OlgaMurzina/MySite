@@ -3,6 +3,16 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 
+class PublishedManager(models.Manager):
+    """
+    Собственный менеджер - конкретно-прикладной менеджер для обслуживания QuerySet только по полю published
+    """
+
+    def get_queryset(self):
+        return super().get_queryset() \
+            .filter(status=Post.Status.PUBLISHED)
+
+
 class Post(models.Model):
     """
     Модель Post для хранения постов блога в базе данных
@@ -34,6 +44,15 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True)
     # поле статуса поста
     status = models.CharField(max_length=2, choices=Status.choices, default=Status.DRAFT)
+
+    '''
+    Если в своей модели вы объявляете какие-либо менеджеры, но также хотите сохранить менеджер 
+    objects, то вы должны добавить его в свою модель явным образом!
+    '''
+    # менеджер, применяемый по умолчанию
+    objects = models.Manager()
+    # конкретно-прикладной менеджер - собственный менеджер
+    published = PublishedManager()
 
     class Meta:
         """
