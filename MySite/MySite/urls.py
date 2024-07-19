@@ -15,8 +15,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # новый шаблон URL-адреса, определенный с помощью функции include,
+    # ссылается на шаблоны URL-адресов, определенные в приложении blog,
+    # что-бы они были включены в рамки пути blog/
+    path('blog/', include('blog.urls', namespace='blog')),
 ]
+
+# Указанные шаблоны вставляются в рамки именного пространства blog.
+# Именные пространства должны быть уникальными для всего проекта.
+# Позже можно будет легко ссылаться на URL-запросы блога, используя именное пространство,
+# за которым следует двоеточие, и имя URL-запроса, например blog:post_list и blog:post_detail.
