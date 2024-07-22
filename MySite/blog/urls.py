@@ -11,11 +11,16 @@ urlpatterns = [
 
     # не принимает никаких аргументов и соотносится с представлением post_list
     # path('', views.post_list, name='post_list'),
-    path('', views.PostListView.as_view(), name='post_list'),
+    path('',
+         views.PostListView.as_view(),
+         name='post_list'),
     # соотносится с представлением post_detail и принимает аргумент id,
     # который является целым числом, заданным конвертором путей int
     path('<int:year>/<int:month>/<int:day>/<slug:post>/',
          views.post_detail,
          name='post_detail'),
+    path('<int:post_id>/share/',
+         views.post_share,
+         name='post_share'),
 
 ]
