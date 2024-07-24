@@ -16,6 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.sitemaps.views import sitemap
+from blog.sitemaps import PostSitemap
+
+# определен словарь sitemaps
+sitemaps = {'posts': PostSitemap, }
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,6 +28,11 @@ urlpatterns = [
     # ссылается на шаблоны URL-адресов, определенные в приложении blog,
     # что-бы они были включены в рамки пути blog/
     path('blog/', include('blog.urls', namespace='blog')),
+    # определим шаблон URL-адреса, который совпадает с шаблоном sitemap.xml и
+    # в котором используется встроенное в Django представление sitemap.
+    # Словарь sitemaps передается в представление sitemap
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
+         name='django.contrib.sitemaps.views.sitemap')
 ]
 
 # Указанные шаблоны вставляются в рамки именного пространства blog.
