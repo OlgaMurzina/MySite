@@ -38,5 +38,7 @@ urlpatterns = [
     # который задается slug-строкой, обслуживает посты, отфильтрованные по тегу
     path('tag/<slug:tag_slug>/',
          views.post_list, name='post_list_by_tag'),
+    # соотносится с представлением поиска
+    path('search/', views.post_search, name='post_search'),
 
 ]

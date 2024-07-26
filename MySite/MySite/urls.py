@@ -32,7 +32,9 @@ urlpatterns = [
     # в котором используется встроенное в Django представление sitemap.
     # Словарь sitemaps передается в представление sitemap
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
-         name='django.contrib.sitemaps.views.sitemap')
+         name='django.contrib.sitemaps.views.sitemap'),
+    # авторизация
+    path("accounts/", include("django.contrib.auth.urls")),
 ]
 
 # Указанные шаблоны вставляются в рамки именного пространства blog.
