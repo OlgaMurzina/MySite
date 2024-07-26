@@ -27,7 +27,7 @@ urlpatterns = [
     # новый шаблон URL-адреса, определенный с помощью функции include,
     # ссылается на шаблоны URL-адресов, определенные в приложении blog,
     # что-бы они были включены в рамки пути blog/
-    path('blog/', include('blog.urls', namespace='blog')),
+    path('', include('blog.urls', namespace='blog')),
     # определим шаблон URL-адреса, который совпадает с шаблоном sitemap.xml и
     # в котором используется встроенное в Django представление sitemap.
     # Словарь sitemaps передается в представление sitemap
