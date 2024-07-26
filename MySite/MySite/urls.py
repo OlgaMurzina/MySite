@@ -35,6 +35,7 @@ urlpatterns = [
          name='django.contrib.sitemaps.views.sitemap'),
     # авторизация
     path("accounts/", include("django.contrib.auth.urls")),
+    path("accounts/", include("django.contrib.auth.urls")),
 ]
 
 # Указанные шаблоны вставляются в рамки именного пространства blog.

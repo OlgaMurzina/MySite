@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sitemaps',
     'django.contrib.postgres',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +134,4 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # перенаправление пользователя после входа по логину на главную страницу
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
