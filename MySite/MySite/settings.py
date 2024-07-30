@@ -135,8 +135,8 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 # Конфигурация сервера электронной почты
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'olga.murzina@inbox.ru'
-EMAIL_HOST_PASSWORD = 'x9sje3fJxAYdtRbh9CN1'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
 
 # перенаправление пользователя после входа по логину на главную страницу
