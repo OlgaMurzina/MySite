@@ -129,9 +129,17 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# отправка емейл в консоль
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+# Конфигурация сервера электронной почты
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'olga.murzina@inbox.ru'
+EMAIL_HOST_PASSWORD = 'x9sje3fJxAYdtRbh9CN1'
+EMAIL_USE_TLS = True
 
 # перенаправление пользователя после входа по логину на главную страницу
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 30
